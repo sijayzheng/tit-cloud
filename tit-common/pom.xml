@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.sijay</groupId>
+        <artifactId>tit-cloud</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>tit-common</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>tit-common-bom</module>
+        <module>tit-common-core</module>
+        <module>tit-common-json</module>
+        <module>tit-common-mybatis</module>
+        <module>tit-common-nacos</module>
+        <module>tit-common-openfeign</module>
+        <module>tit-common-redis</module>
+        <module>tit-common-satoken</module>
+        <module>tit-common-web</module>
+        <module>tit-common-office</module>
+        <module>tit-common-template</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+</project>

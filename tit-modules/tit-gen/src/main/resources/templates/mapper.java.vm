@@ -1,0 +1,19 @@
+package cn.sijay.${module}.mapper;
+
+import cn.sijay.${module}.entity.${className};
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+
+
+/**
+ * <strong>${className}Mapper</strong>
+ * <p>
+ * ${comment}持久化层
+ * </p>
+ *
+ * @author ${author}
+ * @since ${createTime}
+ */
+@Mapper
+public interface ${className}Mapper extends BaseMapper<${className}> {
+}

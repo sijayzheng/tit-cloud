@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: ${datasource.system.url}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${datasource.system.username}
+    password: ${datasource.system.password}
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 10
+      connectionTimeout: 30000
+      validationTimeout: 5000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      connectionTestQuery: SELECT 1
+      keepaliveTime: 30000
+
+gen:
+  path: code
+  author: ${user.name}
+  template: '列表'
+  packageName: 'cn.sijay.code'
+  genType: '压缩包'
+

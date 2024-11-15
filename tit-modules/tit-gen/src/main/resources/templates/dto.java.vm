@@ -1,0 +1,78 @@
+package cn.sijay.${module}.dto;
+
+import cn.sijay.common.core.utils.BeanUtil;
+import cn.sijay.common.mybatis.annotation.QueryColumn;
+import cn.sijay.common.mybatis.dictionary.QueryType;
+import ${packageName}.${module}.entity.${className};
+import com.alibaba.excel.annotation.ExcelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+#foreach ($import in $imports)
+import ${import};
+#end
+
+import java.io.Serial;
+import java.io.Serializable;
+
+/**
+ * <strong>${className}</strong>
+ * <p>
+ * ${comment} 实体类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${createTime}
+ */
+@Data
+@Accessors(chain = true)
+@Schema(name = "${className}", title = "${comment}", description = "${comment}")
+public class ${className}Dto implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    #set($excelSort=0)
+    #foreach($field in $fields)
+        #if(!$field.isSuperColumn())
+    /**
+     * ${field.columnComment}
+     */
+    @Schema(title = "${field.columnComment}")
+        #if($field.isExcelColumn())
+    @ExcelProperty(value = "${field.columnComment}", order = $excelSort)
+            #set($excelSort=$excelSort+1)
+        #end
+        #if($field.isQueryable())
+    @QueryColumn(QueryType.${field.queryType})
+        #end
+        #if($field.length&&$field.length>0)
+    @Size(max = $field.length, message = "字段[${field.columnComment}]最大长度为{max}")
+        #end
+    private ${field.javaType.getClassName()} ${field.fieldName};
+
+        #end
+    #end
+    #foreach($field in $fields)
+        #if($field.isQueryable())
+            #if($field.queryType.getCode() == 'between')
+    /**
+     * ${field.columnComment}开始
+     */
+    private ${field.javaType.getClassName()} ${field.fieldName}Start;
+
+    /**
+     * ${field.columnComment}结束
+     */
+    private ${field.javaType.getClassName()} ${field.fieldName}End;
+
+            #end
+        #end
+    #end
+
+    public ${className} to${className} () {
+        return BeanUtil.copyProperties(this, ${className}. class);
+    }
+}

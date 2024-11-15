@@ -1,0 +1,4 @@
+cn.sijay.common.json.config.JacksonConfig
+cn.sijay.common.mybatis.config.MybatisPlusConfig
+
+cn.sijay.common.web.config.InitialConfig

@@ -1,0 +1,32 @@
+# Tomcat
+server:
+  port: 26800
+  servlet:
+    context-path: /
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: tit-gateway-service
+  profiles:
+    # 环境配置
+    active: @profiles.active@
+  # nacos 配置
+  cloud:
+    nacos:
+      server-addr: @nacos.server-addr@
+      username: @nacos.username@
+      password: @nacos.password@
+      discovery:
+        namespace: @nacos.namespace@
+        group: @nacos.group@
+      config:
+        refresh-enabled: true
+        namespace: @nacos.namespace@
+        group: @nacos.group@
+        file-extension: yaml
+  config:
+    import:
+      - optional:nacos:tit-common
+      - optional:nacos:${spring.application.name}
